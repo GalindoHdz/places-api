@@ -13,7 +13,7 @@ module.exports = {
     full_name: {
       type: "String",
       required: true,
-      minLength: 5,
+      minLength: 3,
       maxLength: 50,
     },
     mail: {

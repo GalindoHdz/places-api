@@ -18,5 +18,9 @@ module.exports.policies = {
   ***************************************************************************/
 
   // '*': true,
-
+  UsersController: {
+    '*': 'verifyToken',
+    'login': true,
+    'signup': true,
+  }
 };

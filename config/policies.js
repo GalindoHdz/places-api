@@ -9,18 +9,18 @@
  */
 
 module.exports.policies = {
-
   /***************************************************************************
-  *                                                                          *
-  * Default policy for all controllers and actions, unless overridden.       *
-  * (`true` allows public access)                                            *
-  *                                                                          *
-  ***************************************************************************/
+   *                                                                          *
+   * Default policy for all controllers and actions, unless overridden.       *
+   * (`true` allows public access)                                            *
+   *                                                                          *
+   ***************************************************************************/
 
   // '*': true,
   UsersController: {
-    '*': 'verifyToken',
-    'login': true,
-    'signup': true,
-  }
+    "find": "verifyToken",
+    "create": "verifyToken",
+    "update": "verifyToken",
+    "delete": "verifyToken",
+  },
 };

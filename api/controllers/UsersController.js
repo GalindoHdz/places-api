@@ -5,10 +5,10 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const Joi = require('joi');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { config } = require('dotenv');
+const Joi = require("joi");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { config } = require("dotenv");
 
 config();
 
@@ -53,24 +53,27 @@ module.exports = {
 
       const user = await Users.findOne({ mail: value.mail });
 
-      if(!user) {
-        return response.status(404).send({ message: 'User not found' });
+      if (!user) {
+        return response.status(404).send({ message: "User not found" });
       }
 
-      const passwordIsValid = await bcrypt.compare(value.password, user.password);
-    
-      if(!passwordIsValid) {
-        return response.status(401).send({ message: 'Password invalid' });
+      const passwordIsValid = await bcrypt.compare(
+        value.password,
+        user.password
+      );
+
+      if (!passwordIsValid) {
+        return response.status(401).send({ message: "Password invalid" });
       }
 
       const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET, {
         expiresIn: process.env.TOKEN_EXPIRES,
       });
 
-      return response.status(200).send({ 
+      return response.status(200).send({
         token,
         full_name: user.full_name,
-        mail: user.mail
+        mail: user.mail,
       });
     } catch (error) {
       throw response.status(500).send({ error });

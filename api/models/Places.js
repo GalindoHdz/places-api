@@ -1,5 +1,5 @@
 /**
- * Users.js
+ * Places.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -10,32 +10,29 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    full_name: {
-      type: "string",
-      required: true,
-      minLength: 3,
-      maxLength: 50,
-    },
-    mail: {
-      type: "string",
-      unique: true,
-      required: true,
-    },
-    password: {
+    name: {
       type: "string",
       required: true,
     },
-    admin: {
-      type: "boolean",
-      defaultsTo: false,
-    }
+    description: {
+      type: "string",
+      defaultsTo: ""
+    },
+    list: {
+      type: "json",
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
 
+
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-  },
+    user: {
+      model: "Users"
+    }
+  }
 };
+

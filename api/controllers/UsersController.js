@@ -66,7 +66,7 @@ module.exports = {
         return response.status(401).send({ message: "Password invalid" });
       }
 
-      const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET, {
+      const token = jwt.sign({ id: user.id, admin: user.admin }, process.env.TOKEN_SECRET, {
         expiresIn: process.env.TOKEN_EXPIRES,
       });
 

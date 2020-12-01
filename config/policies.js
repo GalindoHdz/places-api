@@ -18,9 +18,15 @@ module.exports.policies = {
 
   // '*': true,
   UsersController: {
+    "find": "verifyAdmin",
+    "create": "verifyAdmin",
+    "update": "verifyAdmin",
+    "remove": "verifyAdmin",
+  },
+  PlacesController: {
     "find": "verifyToken",
     "create": "verifyToken",
     "update": "verifyToken",
-    "delete": "verifyToken",
+    "remove": "verifyToken",
   },
 };

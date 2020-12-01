@@ -16,7 +16,8 @@
     "sails-mongo": "^1.2.0"
   },
   "devDependencies": {
-    "eslint": "5.16.0"
+    "eslint": "5.16.0",
+    "prettier": "^2.2.1"
   },
   "scripts": {
     "start": "NODE_ENV=production node app.js",

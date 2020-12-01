@@ -21,12 +21,12 @@ module.exports.policies = {
     "find": "verifyAdmin",
     "create": "verifyAdmin",
     "update": "verifyAdmin",
-    "remove": "verifyAdmin",
+    "destroy": "verifyAdmin",
   },
   PlacesController: {
     "find": "verifyToken",
     "create": "verifyToken",
     "update": "verifyToken",
-    "remove": "verifyToken",
+    "destroy": "verifyToken",
   },
 };

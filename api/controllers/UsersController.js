@@ -5,10 +5,10 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const Joi = require("joi");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { config } = require("dotenv");
+const Joi = require('joi');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { config } = require('dotenv');
 
 config();
 
@@ -22,9 +22,7 @@ module.exports = {
       }).validate(request.body);
 
       if (error) {
-        return response.status(400).send({
-          error,
-        });
+        return response.status(400).send({ error });
       }
 
       const salt = await bcrypt.genSalt(10);
@@ -32,7 +30,7 @@ module.exports = {
 
       await Users.create(value);
 
-      return response.status(200).send({ message: "User created" });
+      return response.status(200).send({ message: 'User created' });
     } catch (error) {
       throw response.status(500).send({ error });
     }
@@ -46,24 +44,19 @@ module.exports = {
       }).validate(request.body);
 
       if (error) {
-        return response.status(400).send({
-          error,
-        });
+        return response.status(400).send({ error });
       }
 
       const user = await Users.findOne({ mail: value.mail });
 
       if (!user) {
-        return response.status(404).send({ message: "User not found" });
+        return response.status(404).send({ message: 'User not found' });
       }
 
-      const passwordIsValid = await bcrypt.compare(
-        value.password,
-        user.password
-      );
+      const passwordIsValid = await bcrypt.compare(value.password, user.password);
 
       if (!passwordIsValid) {
-        return response.status(401).send({ message: "Password invalid" });
+        return response.status(401).send({ message: 'Password invalid' });
       }
 
       const token = jwt.sign({ id: user.id, admin: user.admin }, process.env.TOKEN_SECRET, {

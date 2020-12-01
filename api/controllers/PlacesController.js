@@ -14,7 +14,7 @@ module.exports = {
 
       return response.status(200).send({ lists });
     } catch (error) {
-      return response.status(500).send({ error });
+      throw response.status(500).send({ error });
     }
   },
 
@@ -60,17 +60,24 @@ module.exports = {
       }).validate(request.body);
 
       if (error) {
-        return response.status(400).send({
-          error,
-        });
+        return response.status(400).send({ error });
       }
 
       await Places.update({ id: value.id }).set({ ...value });
 
       return response.status(200).send({ message: 'Place list updated' });
     } catch (error) {
-      console.log(error);
-      return response.status(500).send({ error });
+      throw response.status(500).send({ error });
+    }
+  },
+
+  destroy: async function (request, response) {
+    try {
+      await Places.destroy({ id: request.params.id });
+
+      return response.status(200).send({ message: 'list deleted' });
+    } catch (error) {
+      throw response.status(500).send({ error });
     }
   },
 };

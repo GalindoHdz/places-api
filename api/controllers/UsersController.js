@@ -22,7 +22,7 @@ module.exports = {
       }).validate(request.body);
 
       if (error) {
-        return response.status(400).send({ error });
+        return response.status(400).send({ message: 'User data error', error });
       }
 
       const salt = await bcrypt.genSalt(10);
@@ -32,7 +32,7 @@ module.exports = {
 
       return response.status(200).send({ message: 'User created' });
     } catch (error) {
-      throw response.status(500).send({ error });
+      throw response.status(500).send({ message: 'Error server', error });
     }
   },
 
@@ -44,7 +44,7 @@ module.exports = {
       }).validate(request.body);
 
       if (error) {
-        return response.status(400).send({ error });
+        return response.status(400).send({ message: 'User data error', error });
       }
 
       const user = await Users.findOne({ mail: value.mail });
@@ -69,7 +69,7 @@ module.exports = {
         mail: user.mail,
       });
     } catch (error) {
-      throw response.status(500).send({ error });
+      throw response.status(500).send({ message: 'Error server', error });
     }
   },
 
